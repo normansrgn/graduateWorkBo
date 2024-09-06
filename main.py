@@ -24,10 +24,10 @@ async def start(message: types.Message):
     
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = [
-        types.KeyboardButton(text="Каталог", web_app=WebAppInfo(url="https://normansrgn.github.io/graduateWork/")),
-        types.KeyboardButton(text="Корзина"),
-        types.KeyboardButton(text="Контакты"),
-        types.KeyboardButton(text="Поддержка")
+        types.KeyboardButton(text="👟Каталог", web_app=WebAppInfo(url="https://normansrgn.github.io/graduateWork/")),
+        types.KeyboardButton(text="🛒Корзина"),
+        types.KeyboardButton(text="📲Контакты"),
+        types.KeyboardButton(text="💬Поддержка")
     ]
     keyboard.add(*buttons)
 
@@ -41,17 +41,17 @@ async def start(message: types.Message):
 
     await message.answer(response_text, reply_markup=keyboard)
 
-@dp.message_handler(lambda message: message.text in ["Корзина", "Контакты", "Поддержка"])
+@dp.message_handler(lambda message: message.text in ["🛒Корзина", "📲Контакты", "💬Поддержка"])
 async def handle_menu_buttons(message: types.Message):
     user_id = message.from_user.id
     
-    if message.text == "Корзина":
+    if message.text == "🛒Корзина":
         await message.answer("Ваша корзина пока пуста.")
         user_state[user_id] = None
-    elif message.text == "Контакты":
+    elif message.text == "📲Контакты":
         await message.answer("Свяжитесь с нами по телефону: +77777777777")
         user_state[user_id] = None
-    elif message.text == "Поддержка":
+    elif message.text == "💬Поддержка":
         await message.answer("Пожалуйста, напишите свой вопрос. Мы свяжемся с вами как можно скорее.")
 
         global question_id_counter
